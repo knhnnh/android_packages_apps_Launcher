@@ -337,6 +337,11 @@ public final class Launcher extends Activity implements View.OnClickListener, On
     private int mDockStyle=DOCK_STYLE_3;
     //DRAWER STYLES
     private final int[]mDrawerStyles={R.layout.old_drawer, R.layout.new_drawer};
+    
+    private Method setFullScreenMode;
+    private View mAllAppsGridTitle;
+    private TextView mAllAppsGridTitleText;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 		mMessWithPersistence=AlmostNexusSettingsHelper.getSystemPersistent(this);
@@ -387,6 +392,18 @@ public final class Launcher extends Activity implements View.OnClickListener, On
 
         //ADW: register a sharedpref listener
         getSharedPreferences("launcher.preferences.almostnexus", Context.MODE_PRIVATE).registerOnSharedPreferenceChangeListener(this);
+
+        try{
+            Class<?> sgManager = Class.forName("jp.co.sharp.android.softguide.SoftGuideManager");
+            Class<?> paramstype[] = {boolean.class};
+            setFullScreenMode = sgManager.getMethod("setFullScreenMode", paramstype);
+            setFullScreenMode.invoke(null, true);
+        }catch(Exception o){
+//            Log.d("is01fullscreen", "failed" + o.getMessage() + ":" + o.getClass().toString());
+        }
+        mAllAppsGridTitle =(View)((ViewStub)findViewById(R.id.stub_drawer_title)).inflate();
+        mAllAppsGridTitle.setVisibility(View.INVISIBLE);
+        mAllAppsGridTitleText = (TextView)findViewById(R.id.all_apps_view_title);
     }
 
     private void checkForLocaleChange() {
@@ -579,6 +596,11 @@ public final class Launcher extends Activity implements View.OnClickListener, On
     @Override
 	protected void onResume() {
 		super.onResume();
+		try{
+            setFullScreenMode.invoke(null, true);
+        }catch(Exception o){
+//            Log.d("is01fullscreen", "failed");
+        }
 		if (shouldRestart())
 			return;
 		// ADW: Use custom settings to set the rotation
@@ -2611,6 +2633,10 @@ public final class Launcher extends Activity implements View.OnClickListener, On
 			   AlmostNexusSettingsHelper.setCurrentAppCatalog(Launcher.this, action);
 			   mAllAppsGrid.updateAppGrp();
 			   checkActionButtonsSpecialMode();
+
+			   mAllAppsGridTitleText.setText(action ==  AppGroupAdapter.APP_GROUP_ALL ?
+			    		getString(R.string.AppGroupAll) :
+				    		AppCatalogueFilters.getInstance().getGroupTitle(action));
 		   }
 			//mDrawer.open();
 		}
@@ -3517,6 +3543,12 @@ public final class Launcher extends Activity implements View.OnClickListener, On
     	    mPreviousView.setVisibility(View.GONE);
     	    mNextView.setVisibility(View.GONE);
     	    if(mDesktopIndicator!=null)mDesktopIndicator.hide();
+
+    	    int filterIdx = sModel.getApplicationsAdapter().getCatalogueFilter().getCurrentFilterIndex();
+	        mAllAppsGridTitleText.setText(filterIdx ==  AppGroupAdapter.APP_GROUP_ALL ?
+		    		getString(R.string.AppGroupAll) :
+			    		AppCatalogueFilters.getInstance().getGroupTitle(filterIdx));
+    	    mAllAppsGridTitle.setVisibility(View.VISIBLE);
 		}
 		else if (filter != null)
 	        sModel.getApplicationsAdapter().setCatalogueFilter(filter);
@@ -3561,6 +3593,8 @@ public final class Launcher extends Activity implements View.OnClickListener, On
 
 			mAllAppsGrid.close(animated && allowDrawerAnimations);
             mAllAppsGrid.clearTextFilter();
+
+            mAllAppsGridTitle.setVisibility(View.INVISIBLE);
 		}
     }
     boolean isAllAppsVisible() {
@@ -3984,7 +4018,10 @@ public final class Launcher extends Activity implements View.OnClickListener, On
 				break;
 			}
 		}else{
-			this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			if (type == AlmostNexusSettingsHelper.ORIENTATION_LANDSCAPE)
+				this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+			else
+				this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		}
 	}
 
@@ -4346,6 +4383,10 @@ public final class Launcher extends Activity implements View.OnClickListener, On
 	    	Toast t=Toast.makeText(this, name, Toast.LENGTH_SHORT);
 	    	t.show();
 	    } */
+
+        mAllAppsGridTitleText.setText(currentFIndex ==  AppGroupAdapter.APP_GROUP_ALL ?
+	    		getString(R.string.AppGroupAll) :
+		    		AppCatalogueFilters.getInstance().getGroupTitle(currentFIndex));
 	}
 
 	private void updateCounters(View view, String packageName, int counter, int color){

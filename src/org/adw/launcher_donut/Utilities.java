@@ -331,13 +331,27 @@ final class Utilities {
         if (bitmapWidth < width || bitmapHeight < height) {
             int color = context.getResources().getColor(R.color.window_background);
 
-            Bitmap centered = Bitmap.createBitmap(bitmapWidth < width ? width : bitmapWidth,
-                    bitmapHeight < height ? height : bitmapHeight, Bitmap.Config.RGB_565);
+            int w, x, h, y;
+            if (bitmapWidth < width) {
+                w = width;
+                x = (width - bitmapWidth) / 2;
+            } else {
+                w = bitmapWidth;
+                x = 0;
+            }
+            if (bitmapHeight < height) {
+                h = height;
+                y = (height - bitmapHeight) / 2;
+            } else {
+                h = bitmapHeight;
+                y = 0;
+            }
+            Bitmap centered = Bitmap.createBitmap(w, h, Bitmap.Config.RGB_565);
+
             centered.setDensity(bitmap.getDensity());
             Canvas canvas = new Canvas(centered);
             canvas.drawColor(color);
-            canvas.drawBitmap(bitmap, (width - bitmapWidth) / 2.0f, (height - bitmapHeight) / 2.0f,
-                    null);
+            canvas.drawBitmap(bitmap, x, y, null);
 
             bitmap = centered;
         }

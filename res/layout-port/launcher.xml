@@ -37,6 +37,13 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	/> 
+	<ViewStub
+        android:id="@+id/stub_drawer_title"
+        android:inflatedId="@+id/all_apps_view_title"
+	    android:layout="@layout/all_apps_view_title"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="bottom|center_horizontal" />
 	<LinearLayout
 		android:id="@+id/drawer_toolbar"
 		android:layout_width="fill_parent"

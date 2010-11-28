@@ -525,8 +525,7 @@ public class Workspace extends WidgetSpace implements DropTarget, DragSource, Dr
     		x=(getScrollX()-mWallpaperWidth+(getRight()-getLeft()));
     	}
 	if(!mWallpaperScroll || getChildCount()==1)x=(getScrollX()-(mWallpaperWidth/2)+(getRight()/2));
-    final int y=mWallpaperY;
-    canvas.drawBitmap(mWallpaper, x, y, mPaint);
+    canvas.drawBitmap(mWallpaper, x, (getBottom() - mWallpaperHeight) / 2, mPaint);
         if(!mSensemode){
 			// If the all apps drawer is open and the drawing region for the workspace
 	        // is contained within the drawer's bounds, we skip the drawing. This requires
@@ -614,11 +613,8 @@ public class Workspace extends WidgetSpace implements DropTarget, DragSource, Dr
 	if (mWallpaperLoaded) {
 	    mWallpaperLoaded = false;
 
-	    Display display = mLauncher.getWindowManager().getDefaultDisplay();
-	    boolean isPortrait = display.getWidth() < display.getHeight();
-
-	    final int _width = isPortrait ? display.getWidth() : display.getHeight();
-	    final int _height = isPortrait ? display.getHeight() : display.getWidth();
+	    final int _width = 480;
+	    final int _height = 960;
 	    
 	    mWallpaper = Utilities.centerToFit(mWallpaper, _width * Launcher.WALLPAPER_SCREENS_SPAN,
 	            _height, mLauncher);
