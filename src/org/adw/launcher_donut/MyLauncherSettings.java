@@ -80,7 +80,7 @@ public class MyLauncherSettings extends PreferenceActivity implements OnPreferen
         DialogSeekBarPreference rowsLandscape= (DialogSeekBarPreference) findPreference("drawerRowsLandscape");
         rowsLandscape.setMin(1);
         DialogSeekBarPreference zoomSpeed= (DialogSeekBarPreference) findPreference("zoomSpeed");
-        zoomSpeed.setMin(300);
+        zoomSpeed.setMin(100);
         DialogSeekBarPreference uiScaleAB= (DialogSeekBarPreference) findPreference("uiScaleAB");
         uiScaleAB.setMin(1);
         // wjax. Listen for changes in those ListPreference as if their values are BINDING_APP, then an app shall be selected via startActivityForResult
