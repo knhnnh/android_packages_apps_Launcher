@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="adw_changelog">
+-&lt;b>NOTICE:&lt;/b> If your theme looks ugly, ask your theme developer to update it!!! &lt;br>&lt;br>
+-&lt;b>NOTICE:&lt;/b> To add/remove screens press MENU/Edit&lt;br>&lt;br>
+-&lt;b>NOTICE:&lt;/b> To enable ORIENTATION, disable PERSISTENCE.&lt;br>&lt;br>
+-&lt;b>REMEMBER:&lt;/b> You can hide apps from the drawer by using the custom catalogs (press menu key while the drawer is open) &lt;br>&lt;br>
+
+&lt;b>Version 1.3.5:&lt;/b>&lt;br>
+&lt;b>--------------&lt;/b>&lt;br>
+-Option to select different trash can positions/behaviors &lt;br>
+-QuickActions window on longpress items. &lt;br>
+-Support for drag-out and quickactions on the main dock too. &lt;br>
+-Added the LauncherActions to the main ADD menu. &lt;br>
+-Lots of fixes &lt;br>
+&lt;br>
+-ごみ箱の位置を変更出来るようにした&lt;br>
+-アイコン長押しでクイックアクションウインドウを表示するようにした&lt;br>
+-ドックバーのアイコンもドラッグとクイックアクションに対応した&lt;br>
+-ホーム画面に追加するメニューにランチャーアクションを追加した&lt;br>
+-オリジナル版に含まれていない日本語リソースを暫定的に追加&lt;br>&lt;br>
+
+★★オリジナル版との違い★★&lt;br>
+-IS01の右側のソフトキー部分まで使う全画面表示&lt;br>
+-[システムに常駐]をONにしてもランドスケープにできるようにした&lt;br>
+--ONにする前に[ホームの向き]をランドスケープにしてください&lt;br>
+-ドロワーにグループ名を表示するようにした&lt;br>
+-ドロワーのズームエフェクト速度の最速設定を300ms→100msにした&lt;br>
+-壁紙の横位置が左にずれる？のを修正(IS01だからというわけではなく、ランドスケープだとバグがあるらしい)&lt;br>
+-1.3.0からドラッグ開始時のバイブがHaptic Feedbackに変更になったが、IS01の設定ではHaptic Feedbackを設定出来ない？ので直接バイブするように戻した。&lt;br>
+--ちなみにHaptic FeedbackはSpare Partsなどを使うと設定出来るようです。&lt;br>
+-1.3.0から壁紙の縦位置が(多分ランドスケープだと)おかしくなるようになったのを修正&lt;br>
+
+</string>
+</resources>
