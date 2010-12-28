@@ -6,6 +6,10 @@
 -&lt;b>NOTICE:&lt;/b> To enable ORIENTATION, disable PERSISTENCE.&lt;br>&lt;br>
 -&lt;b>REMEMBER:&lt;/b> You can hide apps from the drawer by using the custom catalogs (press menu key while the drawer is open) &lt;br>&lt;br>
 
+&lt;b>Version 1.3.6:&lt;/b>&lt;br>
+&lt;b>--------------&lt;/b>&lt;br>
+-Option to lock/unlock desktop (press menu/more) &lt;br>
+-Small fixes for some FCs &lt;br>
 &lt;b>Version 1.3.5:&lt;/b>&lt;br>
 &lt;b>--------------&lt;/b>&lt;br>
 -Option to select different trash can positions/behaviors &lt;br>
@@ -14,6 +18,7 @@
 -Added the LauncherActions to the main ADD menu. &lt;br>
 -Lots of fixes &lt;br>
 &lt;br>
+-デスクトップのロック/アンロックをメニューのその他に追加した&lt;br>
 -ごみ箱の位置を変更出来るようにした&lt;br>
 -アイコン長押しでクイックアクションウインドウを表示するようにした&lt;br>
 -ドックバーのアイコンもドラッグとクイックアクションに対応した&lt;br>

@@ -345,4 +345,6 @@
     <string name="pref_summary_deletezone_style">ごみ箱の位置を変更する</string>
     <string name="pref_title_close_apps_dockbar">ドロワーを閉じる</string>
     <string name="pref_summary_close_apps_dockbar">ドックバーが表示されているときにアイコンを長押ししたらドロワーを閉じる</string>
+    <string name="menu_lock">デスクトップのロック</string>
+    <string name="menu_unlock">デスクトップのアンロック</string>
 </resources>
